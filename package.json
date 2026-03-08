@@ -10,22 +10,21 @@
     "lint:fix": "next lint --fix"
   },
   "devDependencies": {
-    "@mdx-js/loader": "^3.1.1",
-    "@mdx-js/react": "^3.1.1",
-    "@types/react": "19.2.2",
-    "eslint": "^9.37.0",
-    "eslint-config-next": "^15.5.5",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "prettier": "^3.6.2",
-    "typescript": "5.9.3"
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@types/react": "18.2.73",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.26",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3",
+    "typescript": "5.4.3"
   },
   "dependencies": {
     "@neato/guider": "^1.1.0",
-    "next": "^15.5.5",
-    "next-seo": "^6.8.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
-  },
-  "packageManager": "pnpm@10.18.3"
+    "next": "^14.2.26",
+    "next-seo": "^6.6.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
 }

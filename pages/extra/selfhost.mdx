@@ -14,29 +14,29 @@
     Create a new file named `docker-compose.yml` in your project directory and paste the following content into it:
 
     ```yaml
-  services:
-    postgres:
-      image: postgres
-      environment:
-        POSTGRES_USER: pstream_user
-        POSTGRES_DB: pstream
-        POSTGRES_PASSWORD: YourPasswordHere 
-      ports:
-        - "5432:5432" 
-      networks:
-        - p-stream-network
-    p-stream:
-      image: ghcr.io/dumbutdumber/backend:latest
-      environment:
-        DATABASE_URL: postgresql://pstream_user:YourPasswordHere@postgres:5432/pstream
-        CRYPTO_SECRET: 32CharacterLongStringHere 
-        META_NAME: unofficial-backend
-      ports:
-        - "80:80"
-      depends_on:
-        - postgres
-      networks:
-        - p-stream-network
+      services:
+        postgres:
+          image: postgres
+          environment:
+            POSTGRES_USER: pstream_user
+            POSTGRES_DB: pstream
+            POSTGRES_PASSWORD: YourPasswordHere 
+          ports:
+            - "5432:5432" 
+          networks:
+            - p-stream-network
+        p-stream:
+          image: ghcr.io/dumbutdumber/backend:latest
+          environment:
+            DATABASE_URL: postgresql://pstream_user:YourPasswordHere@postgres:5432/pstream
+            CRYPTO_SECRET: 32CharacterLongStringHere 
+            META_NAME: unofficial-backend
+          ports:
+            - "80:80"
+          depends_on:
+            - postgres
+          networks:
+            - p-stream-network
 
       p-stream-frontend:
         build:
@@ -72,7 +72,7 @@
     * Replace `YourPasswordHere` with your secure database password.
     * Generate a strong session secret and replace `32CharacterLongStringHere`.
     * Replace `TMDBReadAPIKey` with your api key learn more [here](../client/tmdb.mdx).
-    * replace `yourDomainHere` with whatever you'll be using to access your main site, like pstream.org
+    * replace `yourDomainHere` with whatever you'll be using to access your main site, like pstream.mov
     * replace `meta__name` and `meta__description`
 
   </Steps.Step>

@@ -4,17 +4,105 @@ title: 'Deploy'
 
 # Deploying the proxy
 
+<Warning>
+**USERS!**
+
+Please use the extension instead unless you are familiar with self hosting Docker images!
+</Warning>
+
 
 <Warning>
 **Selfhosting the client as well?**
 
-Please read [THIS](./introduction.mdx) and use Method 4 (Docker) or Method 5 (Manual)!
+Please read [THIS](./introduction.mdx) and use Method 1 (Docker) or Method 2 (Manual)!
 
-Cloudflare and Netlify's IPs are blocked by FlixHQ and the proxy MUST be hosted on a VPS or other server.
+Cloudflare and Netlify's IPs are blocked by most sites and the proxy MUST be hosted on a VPS or other server that is not IP/ASN banned.
 
 </Warning>
 
-## Method 1 - Cloudflare (Easy + Best)
+## Method 1 - Docker (Recommended)
+
+This is the recommended method for deploying on a VPS or home server. Experience with Docker, domains and web hosting is recommended.
+
+<Warning>
+  Experience with Docker, domains and web hosting is **highly recommended** for
+  this method. <br />
+  You are exposing your server at your own risk!
+</Warning>
+
+P-Stream does not have a Docker image for the proxy, but there is a Dockerfile within the repo.
+
+<Steps>
+  <Steps.Step>
+    Clone the repo on your server:  
+    <code>git clone https://github.com/p-stream/simple-proxy</code>
+  </Steps.Step>
+
+  <Steps.Step>
+    Locate the <code>Dockerfile</code> in the root folder.
+  </Steps.Step>
+
+  <Steps.Step>
+    Build the Docker image:  
+    <code>docker build -t p-stream-proxy ./simple-proxy</code>
+  </Steps.Step>
+
+  <Steps.Step>
+    (Optional) Create and edit a <code>.env</code> file in the <code>simple-proxy</code> directory to configure secrets such as <code>JWT_SECRET</code> and other environment variables as documented in the configuration guide.
+  </Steps.Step>
+
+  <Steps.Step>
+    Run the Docker container (replace values as needed):  
+    <code>docker run -d --name p-stream-proxy -p 3000:3000 --env-file .env p-stream-proxy</code>
+  </Steps.Step>
+
+  <Steps.Step>
+    (Optional) Configure your firewall or reverse proxy (such as NGINX or Caddy) to expose port <code>3000</code> or your desired HTTP/HTTPS port.
+  </Steps.Step>
+</Steps>
+
+
+The container exposes the HTTP port (Without TLS/SSL) as `3000/TCP`.
+
+## Method 2 - Manual (Advanced)
+
+This method is for advanced users who want full control over their deployment. We recommend using automated package managers like nixpacks for easier deployment.
+
+Manually installing the proxy on your server. You may want to use an automated package manager like nixpacks to do this.
+
+<Steps>
+  <Steps.Step>
+    Clone the repo on your server `git clone https://github.com/p-stream/simple-proxy`
+  </Steps.Step>
+
+  <Steps.Step>
+    Navigate to the directory `cd simple-proxy`
+  </Steps.Step>
+
+  <Steps.Step>
+    Install packages `pnpm i`
+  </Steps.Step>
+
+  <Steps.Step>
+    Build the app `pnpm build`
+  </Steps.Step>
+
+  <Steps.Step>
+    Start the proxy `pnpm start`
+  </Steps.Step>
+</Steps>
+
+You'll need to configure port forwarding and firewall settings. Good luck.
+
+---
+
+# Deprecated Methods
+
+<Warning>
+**These methods are DEPRECATED** and should not be used for new deployments. Cloudflare, Netlify, and Railway IPs have been heavily abused and are now blocked by most streaming sites. Use Docker or Manual deployment on a VPS or home server with a residential/private IP instead.
+</Warning>
+
+## Method 3 - Cloudflare (DEPRECATED)
 
 Cloudflare has a generous free plan, so you don't need to pay anything unless you get thousands of users.
 
@@ -55,7 +143,7 @@ Cloudflare has a generous free plan, so you don't need to pay anything unless yo
   </Steps.Step>
 </Steps>
 
-## Method 2 - Netlify (Easy) 
+## Method 4 - Netlify (DEPRECATED)
 
 Netlify has a very generous free plan, so you'll be able to host your proxy for free unless you get hundreds of users.
 
@@ -91,7 +179,7 @@ Netlify has a very generous free plan, so you'll be able to host your proxy for 
    </Steps.Step>
 </Steps>
 
-## Method 3 - Railway (Easy)
+## Method 5 - Railway (DEPRECATED)
 
 Railway provides $5 in free credits once you verify your account. These credits expire after 1 month and are usually enough to keep the proxy running for about that time.
 (Tip: You can delete your account and create a new one to receive additional credits.)
@@ -126,52 +214,8 @@ Railway provides $5 in free credits once you verify your account. These credits 
   <Steps.Step>
     Once the proxy has deployed, copy the URL from the `Deployments` page.
   </Steps.Step>
-  
+
   <Steps.Step>
     Congratulations! You have deployed the proxy, [you can now set up the client](../extra/streaming.mdx#method-1-self-hosted-proxy).
   </Steps.Step>
 </Steps>
-
-## Method 4 - Docker
-If you know what you are doing, you should know what to do with this information. If you don't, then please follow our Cloudflare guides.
-
-<Warning>
-  Experience with Docker, domains and web hosting is **highly recommended** for
-  this method. <br />
-  [Deploying with Netlify](#method-1-netlify-easy) is easier and safer to do! You
-  are exposing your server at your own risk!
-</Warning>
-
-P-Stream does not have a Docker image for the proxy yet. You can create one yourself or build from source. Alternatively, you can use the sudo-flix proxy Docker image found here: GitHub Container Registry under the image [`ghcr.io/sussy-code/sudo-proxy:latest`](https://ghcr.io/sussy-code/sudo-proxy:latest). It should work the same.
-
-
-The container exposes the HTTP port (Without TLS/SSL) as `3000/TCP`.
-
-## Method 5 - Manual
-If you know what you are doing, you should know what to do with this information. If you don't, then please follow our Cloudflare guides.
-
-Manually installing the proxy on your server. You may want to use an automated package manager like nixpacks to do this.
-
-<Steps>
-  <Steps.Step>
-    Clone the repo on your server `git clone https://github.com/p-stream/simple-proxy`
-  </Steps.Step>
-
-  <Steps.Step>
-    Navigate to the directory `cd simple-proxy`
-  </Steps.Step>
-
-  <Steps.Step>
-    Install packages `pnpm i`
-  </Steps.Step>
-
-  <Steps.Step>
-    Build the app `pnpm build`
-  </Steps.Step>
-
-  <Steps.Step>
-    Start the proxy `pnpm start`
-  </Steps.Step>
-</Steps>
-
-You'll need to configure port forwarding and firewall settings. Good luck.

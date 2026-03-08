@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const redirectTitle = 'Weblate';
-const redirectUrl = 'https://weblate.pstream.org/projects/p-stream/p-stream';
+const redirectUrl = 'https://github.com/p-stream/p-stream';
 
 export default function WeblateRedirect() {
   const [countdown, setCountdown] = useState(5);
@@ -107,21 +107,7 @@ export default function WeblateRedirect() {
           fontSize: '0.7em',
         }}
       >
-        <p>© 2024 P-Stream</p>
         <p>
-          Follow us on{' '}
-          <a
-            href="https://x.com/sudoFlix"
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.textDecoration = 'underline')
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.textDecoration = 'none')
-            }
-          >
-            Twitter
-          </a>{' '}
-          and check out our{' '}
           <a
             href="https://github.com/p-stream"
             onMouseEnter={(e) =>

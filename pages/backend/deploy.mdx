@@ -15,38 +15,38 @@ This method provides a straightforward setup with minimal configuration. For mor
 **Prerequisites**
 
 - **Docker:** If you don't have Docker installed, download it from the official website: [Docker installation](https://www.docker.com/get-started)
-**Setup**
+  **Setup**
 
 <Steps>
   <Steps.Step>
      **Create `docker-compose.yml`:**
      ```yaml
-       services:
-         postgres:
-           image: postgres
-           environment:
-             POSTGRES_USER: pstream_user
-             POSTGRES_DB: pstream
-             POSTGRES_PASSWORD: YourPasswordHere 
-           ports:
-             - "5432:5432" 
-           networks:
-             - p-stream-network
-         p-stream:
-           image: ghcr.io/dumbutdumber/backend:latest
-           environment:
-             DATABASE_URL: postgresql://pstream_user:YourPasswordHere@postgres:5432/pstream
-             CRYPTO_SECRET: 32CharacterLongStringHere 
-             META_NAME: unofficial-backend
-           ports:
-             - "80:80"
-           depends_on:
-             - postgres
-           networks:
-             - p-stream-network
-       networks:
-         p-stream-network: 
-           driver: bridge
+            services:
+             postgres:
+                image: postgres
+                environment:
+                  POSTGRES_USER: pstream_user
+                  POSTGRES_DB: pstream
+                  POSTGRES_PASSWORD: YourPasswordHere 
+                ports:
+                  - "5432:5432" 
+                networks:
+                  - p-stream-network
+              p-stream:
+                image: ghcr.io/dumbutdumber/backend:latest
+                environment:
+                  DATABASE_URL: postgresql://pstream_user:YourPasswordHere@postgres:5432/pstream
+                  CRYPTO_SECRET: 32CharacterLongStringHere 
+                  META_NAME: unofficial-backend
+                ports:
+                  - "80:80"
+                depends_on:
+                  - postgres
+                networks:
+                  - p-stream-network
+            networks:
+              p-stream-network: 
+                driver: bridge
     ```
       **Important:** 
        * Replace `YourPasswordHere` with your secure database password.
@@ -82,29 +82,29 @@ Railway offers a 30-day free trial that includes a one-time $5 credit. After the
     to the closest one possible.
   </Steps.Step>
 
-  <Steps.Step>
-    Click the [`Deploy on Railway`](https://railway.com/deploy/pstreambackend?referralCode=zvXFZF) button
-    above.
-  </Steps.Step>
+<Steps.Step>
+  Click the [`Deploy on
+  Railway`](https://railway.com/deploy/pstreambackend?referralCode=zvXFZF)
+  button above.
+</Steps.Step>
 
-  <Steps.Step>
-    Click on configure For the one that says Backend.
-  </Steps.Step>
+<Steps.Step>Click on configure For the one that says Backend.</Steps.Step>
 
-  <Steps.Step>
-    Fill in the required variable META_NAME the rest are optional and can be set later on.
-  </Steps.Step>
+<Steps.Step>
+  Fill in the required variable META_NAME the rest are optional and can be set
+  later on.
+</Steps.Step>
 
-  <Steps.Step>
-    The `Deploy` button at the bottom of the template should be active, click on
-    it.
-  </Steps.Step>
+<Steps.Step>
+  The `Deploy` button at the bottom of the template should be active, click on
+  it.
+</Steps.Step>
 
-  <Steps.Step>
-    Once the `Backend` service has deployed, copy the URL from the `Deployments`
-    page. (Might take a second for it to be available after the service has
-    deployed)
-  </Steps.Step>
+<Steps.Step>
+  Once the `Backend` service has deployed, copy the URL from the `Deployments`
+  page. (Might take a second for it to be available after the service has
+  deployed)
+</Steps.Step>
 
   <Steps.Step>
     Congratulations! You have deployed the backend, you can now [set up the

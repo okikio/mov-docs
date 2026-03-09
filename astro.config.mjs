@@ -5,7 +5,7 @@ import Icons from 'unplugin-icons/vite';
 
 // Allow site URL and base path to be overridden via environment variables
 const site = process.env.SITE_URL ?? 'https://okikio.github.io';
-const base = process.env.BASE_PATH ?? '/smov-docs';
+const base = process.env.BASE_PATH ?? '/mov-docs';
 
 export default defineConfig({
   site,
@@ -18,10 +18,10 @@ export default defineConfig({
         light: './src/assets/icon-light.png',
         dark: './src/assets/icon-dark.png',
       },
-      favicon: '/favicon.ico',
+      favicon: `${base}/favicon.ico`,
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/p-stream/p-stream' },
-        { icon: 'discord', label: 'Discord', href: '/links/discord' },
+        { icon: 'discord', label: 'Discord', href: `${base}/links/discord` },
       ],
       sidebar: [
         {

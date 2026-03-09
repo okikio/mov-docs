@@ -3,7 +3,7 @@ FROM node:24-alpine AS builder
 WORKDIR /app
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@10.31.0 --activate
 
 # Copy package files
 COPY package.json pnpm-lock.yaml* ./
@@ -13,6 +13,12 @@ RUN pnpm install --frozen-lockfile
 
 # Copy source
 COPY . .
+
+# Build-time configuration (override via docker-compose build.args or --build-arg)
+ARG SITE_URL=https://okikio.github.io
+ARG BASE_PATH=/mov-docs
+ENV SITE_URL=${SITE_URL}
+ENV BASE_PATH=${BASE_PATH}
 
 # Build the site
 RUN pnpm build

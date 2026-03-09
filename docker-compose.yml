@@ -1,13 +1,14 @@
-name: smov-docs
+name: mov-docs
 
 services:
   docs:
-    image: ghcr.io/okikio/smov-docs:latest
+    image: ghcr.io/okikio/mov-docs:latest
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - SITE_URL=${SITE_URL:-https://okikio.github.io}
+        - BASE_PATH=${BASE_PATH:-/mov-docs}
     ports:
       - "${PORT:-8080}:8080"
     restart: unless-stopped
-    environment:
-      - NODE_ENV=production

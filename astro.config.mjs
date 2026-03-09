@@ -1,11 +1,15 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import Icons from 'unplugin-icons/vite';
 
+// Allow site URL and base path to be overridden via environment variables
+const site = process.env.SITE_URL ?? 'https://okikio.github.io';
+const base = process.env.BASE_PATH ?? '/smov-docs';
+
 export default defineConfig({
-  site: 'https://okikio.github.io',
-  base: '/smov-docs',
+  site,
+  base,
   integrations: [
     starlight({
       title: 'P-Stream',
@@ -73,6 +77,9 @@ export default defineConfig({
         },
       ],
       customCss: ['./src/styles/custom.css'],
+      components: {
+        Head: './src/components/Head.astro',
+      },
       editLink: {
         baseUrl: 'https://github.com/p-stream/docs/edit/master/',
       },
@@ -83,6 +90,15 @@ export default defineConfig({
       Icons({
         compiler: 'astro',
       }),
+    ],
+  },
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: 'Inter',
+        cssVariable: '--font-inter',
+      },
     ],
   },
 });

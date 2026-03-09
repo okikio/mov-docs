@@ -1,0 +1,13 @@
+name: smov-docs
+
+services:
+  docs:
+    image: ghcr.io/okikio/smov-docs:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-8080}:8080"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production

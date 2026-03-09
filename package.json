@@ -1,30 +1,28 @@
 {
-  "name": "P-Stream-docs",
-  "version": "0.2.0",
+  "name": "smov-docs",
+  "version": "0.3.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix"
-  },
-  "devDependencies": {
-    "@mdx-js/loader": "^3.0.0",
-    "@mdx-js/react": "^3.0.0",
-    "@types/react": "^18.2.73",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^15.0.8",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.6",
-    "prettier": "^3.5.3",
-    "typescript": "5.4.3"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@neato/guider": "^1.1.0",
-    "next": "^15.0.8",
-    "next-seo": "^6.6.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@astrojs/starlight": "^0.33.0",
+    "astro": "^5.7.0",
+    "@astrojs/node": "^9.1.3"
+  },
+  "devDependencies": {
+    "unplugin-icons": "^0.22.0",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/fa6-brands": "^1.2.3",
+    "eslint": "^9.23.0",
+    "@eslint/js": "^9.23.0",
+    "globals": "^16.0.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.28.0"
   }
 }

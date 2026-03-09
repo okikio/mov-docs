@@ -1,13 +1,15 @@
-node_modules
-*.iml
-.idea
-*.log*
-.vscode
-.DS_Store
-coverage
-dist
-sw.*
+# Build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# env
 .env
-out
-.next
+.env.*
+!.env.example
+
+# OS
 .DS_Store
+Thumbs.db
